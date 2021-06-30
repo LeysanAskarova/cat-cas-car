@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  cat_cas_car:
+    image: 'bitnami/symfony:1'
+    ports:
+      - '8000:8000'
+    volumes:
+      - '..:/app'
+    environment:
+      - SYMFONY_PROJECT_NAME=cat_cas_car
