@@ -1,17 +1,18 @@
 <?php
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ArticleController 
+class ArticleController extends AbstractController
 {
     /**
      * @Route("/")
      */
     public function homepage()
     {
-        return new Response('Это мой сайт на Symfony');
+        return new Response('Это мой сайт на Symfony и, представьте себе, он на Docker!! Веу');
     }
 
     /**
@@ -19,8 +20,20 @@ class ArticleController
      */
     public function show($slug)
     {
-        return new Response(sprintf('Будущая страница статьи: %s',
+        $comments = [
+            'First comment',
+            'Second comment',
+            'Third comment',
+        ];
+        return $this->render('articles/show.html.twig',//name of template
+            [
+                'article' => ucwords(str_replace('-',' ',$slug)),
+                'comments' => $comments,
+            ]// array will be used in template as parameter
+         );
+        /*return new Response(sprintf('Будущая страница статьи: %s',
             ucwords(str_replace('-',' ',$slug))
         ));
+        */
     }
 }

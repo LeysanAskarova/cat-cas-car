@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    Статья {{article}}
+{% endblock %}
+
+{% block body %}
+    <h1>{{article}}</h1>
+    <p>Будущая страница статьи:</p>
+    <h2>Комментарии({{comments|length}})<h2>
+    <ul>
+        {% for comment in comments%}
+            <li>{{comment}}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
