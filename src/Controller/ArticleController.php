@@ -2,21 +2,20 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/", name="app_homepage")
      */
     public function homepage()
     {
-        return new Response('Это мой сайт на Symfony и, представьте себе, он на Docker!! Веу');
+        return $this->render('articles/homepage.html.twig');
     }
 
     /**
-     * @Route("/articles/{slug}")
+     * @Route("/articles/{slug}" , name="app_article_show")
      */
     public function show($slug)
     {
@@ -25,6 +24,8 @@ class ArticleController extends AbstractController
             'Second comment',
             'Third comment',
         ];
+        //dd($slug, $this);
+        dump($slug, $this);
         return $this->render('articles/show.html.twig',//name of template
             [
                 'article' => ucwords(str_replace('-',' ',$slug)),

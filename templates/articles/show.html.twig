@@ -1,15 +1,106 @@
 {% extends 'base.html.twig' %}
-{% block title %}
-    Статья {{article}}
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" href="{{ asset ('css/detail.css') }}"  >
 {% endblock %}
+{% block title %}Статья: {{ article }}{% endblock %}
 
 {% block body %}
-    <h1>{{article}}</h1>
-    <p>Будущая страница статьи:</p>
-    <h2>Комментарии({{comments|length}})<h2>
-    <ul>
-        {% for comment in comments%}
-            <li>{{comment}}</li>
-        {% endfor %}
-    </ul>
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-12">
+
+            <div class="row no-gutters border rounded-lg overflow-hidden flex-md-row mb-4 shadow-sm position-relative bg-white featured-border">
+                <div class="article-detail col-sm-12">
+                    <div class="col-sm-12 p-2">
+                        <div class="media d-flex align-content-center">
+                            <img class="article-detail-image align-self-start mr-3 rounded" src="{{ asset('images/car2.jpg') }}">
+                            <div class="media-body d-inline-block align-self-center">
+                                <h1 class="mb-2">{{ article }}</h1>
+                                <div class="mb-2 d-flex">
+                                    <span class="badge badge-pill badge-secondary mr-2">Дрындулет</span>
+                                    <span class="badge badge-pill badge-secondary mr-2">Карета</span>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="text-muted align-self-center">
+                                        <img class="article-author-img rounded-circle mr-2" src="https://robohash.org/Николай.png?set=set4">
+                                        Николай
+                                    </div>
+                                    <div class="text-muted align-self-center ml-4">26 days ago</div>
+                                    <div class="text-muted align-self-center ml-4 article-detail-hearts">120 <i class="far fa-heart text-danger"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 mt-2 mb-4">
+                        <p>Lorem ipsum <strong>красная точка</strong> dolor sit amet, consectetur adipiscing elit, sed
+                            do eiusmod tempor incididunt <a href="/">Сметанка</a> ut labore et dolore magna aliqua.
+                            Purus viverra accumsan in nisl. Diam vulputate ut pharetra sit amet aliquam. Faucibus a
+                            pellentesque sit amet porttitor eget dolor morbi non. Est ultricies integer quis auctor
+                            elit sed. Tristique nulla aliquet enim tortor at. Tristique et egestas quis ipsum. Consequat semper viverra nam
+                            libero. Lectus quam id leo in vitae turpis. In eu mi bibendum neque egestas congue
+                            quisque egestas diam. <strong>Красная точка</strong> blandit turpis cursus in hac habitasse platea dictumst quisque.</p>
+
+                        <p>Ullamcorper malesuada proin libero nunc consequat interdum varius sit amet. Odio pellentesque
+                            diam volutpat commodo sed egestas. Eget nunc lobortis mattis aliquam. Cursus vitae congue
+                            mauris rhoncus aenean vel. Pretium viverra suspendisse potenti nullam ac tortor vitae.
+                            A pellentesque sit amet porttitor eget dolor. Nisl nunc mi ipsum faucibus vitae. Purus sit amet
+                            luctus venenatis lectus magna fringilla urna. Sit amet tellus cras adipiscing enim. Euismod
+                            nisi porta lorem mollis aliquam ut porttitor leo.</p>
+
+                        <p>Morbi blandit cursus risus at ultrices. Adipiscing vitae proin sagittis nisl rhoncus mattis
+                            rhoncus. Sit amet commodo nulla facilisi. In fermentum et sollicitudin ac orci phasellus
+                            egestas tellus. Sit amet risus nullam eget felis. Dapibus ultrices in iaculis nunc sed
+                            augue lacus viverra. Dictum non consectetur a erat nam at. Odio ut enim blandit volutpat
+                            maecenas. Turpis cursus in hac habitasse platea. Etiam erat velit scelerisque in. Auctor
+                            neque vitae tempus quam pellentesque nec nam aliquam. Odio pellentesque diam volutpat commodo
+                            sed egestas egestas. Egestas dui id ornare arcu odio ut.</p>
+
+                    </div>
+
+
+                    <div class="col-sm-12 mb-4">
+                        <h3><i class="pr-3 far fa-comment text-secondary"></i>{{ comments|length }} Комментария</h3>
+                        <hr>
+
+                        <div class="row mb-4">
+                            <div class="col-sm-12">
+                                <div class="comment-container align-self-start col-sm-6">
+                                    <div class="form-group">
+                                        <textarea class="form-control" rows="2"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-info">Комментировать</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% for comment in comments %}
+                            <div class="row mt-2">
+                                <div class="col-sm-12">
+                                    <div class="media">
+                                        <img class="align-self-start comment-img rounded-circle" src="{{ asset('images/cat-profile.png') }}">
+                                        <div class="media-body align-self-start col-sm-6">
+                                            <b>Сметанка</b>
+                                            <small>about 11 days ago</small>
+                                            <br>
+                                            <span class="comment">{{ comment }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
 {% endblock %}

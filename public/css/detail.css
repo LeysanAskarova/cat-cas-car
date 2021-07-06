@@ -1,0 +1,12 @@
+.article-detail .article-detail-image {
+    height: 250px;
+}
+
+.article-detail .article-detail-hearts {
+    cursor: pointer;
+}
+
+.comment-img {
+    width:  80px;
+    height: 80px;
+}
