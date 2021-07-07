@@ -25,7 +25,7 @@ class ArticleController extends AbstractController
             'Third comment',
         ];
         //dd($slug, $this);
-        dump($slug, $this);
+        //dump($slug, $this);
         return $this->render('articles/show.html.twig',//name of template
             [
                 'article' => ucwords(str_replace('-',' ',$slug)),

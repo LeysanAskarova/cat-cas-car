@@ -1,3 +1,5 @@
+@import "~bootstrap";
+
 html {
     position: relative;
     min-height: 100%;
@@ -17,7 +19,8 @@ body {
 }
 
 .navbar-bg {
-    background: url(/images/nav-background.jpg) center;
+    /*background: url(/images/nav-background.jpg) center;*/
+    background: center;
     background-size: 100%;
 }
 
@@ -83,3 +86,5 @@ body {
 .featured-border {
     border-top: 5px solid lightblue !important;
 }
+
+@import "./detail.css";
