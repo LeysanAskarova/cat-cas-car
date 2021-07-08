@@ -1,4 +1,7 @@
 {
+    "demontpx/parsedown-bundle": {
+        "version": "3.0.2"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -13,6 +16,9 @@
     },
     "doctrine/lexer": {
         "version": "1.2.1"
+    },
+    "erusev/parsedown": {
+        "version": "1.7.4"
     },
     "monolog/monolog": {
         "version": "1.26.1"

@@ -19,7 +19,7 @@ body {
 }
 
 .navbar-bg {
-    /*background: url(/images/nav-background.jpg) center;*/
+    background: url(/public/images/nav-background.jpg) center;
     background: center;
     background-size: 100%;
 }
