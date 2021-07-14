@@ -5,6 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Demontpx\ParsedownBundle\Parsedown;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
 class ArticleController extends AbstractController
@@ -14,6 +15,7 @@ class ArticleController extends AbstractController
      */
     public function homepage()
     {
+        //dd($this->getParameter('app.support_email')); get parameter from .env and services.yaml
         return $this->render('articles/homepage.html.twig');
     }
 
