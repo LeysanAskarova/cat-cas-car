@@ -1,12 +1,13 @@
 <?php
 namespace App\Controller;
 
+use App\Service\MarkdownParser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Demontpx\ParsedownBundle\Parsedown;
-use Symfony\Component\Cache\Adapter\AdapterInterface;
-use Symfony\Component\HttpFoundation\Response;
-use Twig\Environment;
+//use Demontpx\ParsedownBundle\Parsedown;
+//use Symfony\Component\Cache\Adapter\AdapterInterface;
+//use Symfony\Component\HttpFoundation\Response;
+//use Twig\Environment;
 
 class ArticleController extends AbstractController
 {
@@ -22,7 +23,8 @@ class ArticleController extends AbstractController
     /**
      * @Route("/articles/{slug}" , name="app_article_show")
      */
-    public function show($slug, Parsedown $parsedown, AdapterInterface $cache)
+    public function show($slug, //Parsedown $parsedown, AdapterInterface $cache, deleted when creted markdown service
+        MarkdownParser $markdownParser)
     {
         $comments = [
             'First comment',
@@ -56,7 +58,7 @@ class ArticleController extends AbstractController
         //$articlecontent = $parsedown->text($articlecontent);   
 
         /* first method set and get cache*/
-        $item = $cache->getItem('markdown_'.md5($articlecontent));
+        /*$item = $cache->getItem('markdown_'.md5($articlecontent));
 
         if (!$item->isHit())
         {
@@ -64,7 +66,8 @@ class ArticleController extends AbstractController
             $cache->save($item);
         }
 
-        $articlecontent = $item->get();
+        $articlecontent = $item->get();*/
+        $articlecontent = $markdownParser->parse($articlecontent);
         
 
         /* second method 
