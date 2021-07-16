@@ -50,6 +50,9 @@
     "nikic/php-parser": {
         "version": "v4.11.0"
     },
+    "paragonie/sodium_compat": {
+        "version": "v1.16.1"
+    },
     "php-http/client-common": {
         "version": "2.4.0"
     },

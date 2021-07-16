@@ -8,6 +8,7 @@
         "demontpx/parsedown-bundle": "^3.0",
         "http-interop/http-factory-guzzle": "^1.0",
         "nexylan/slack-bundle": "^2.3",
+        "paragonie/sodium_compat": "^1.16",
         "php-http/guzzle6-adapter": "^2.0",
         "sensio/framework-extra-bundle": "^6.1",
         "symfony/asset": "4.4.*",
