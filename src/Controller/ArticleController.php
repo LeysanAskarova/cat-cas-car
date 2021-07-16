@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Service\MarkdownParser;
+use App\Service\SlackClient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 //use Demontpx\ParsedownBundle\Parsedown;
@@ -14,9 +15,12 @@ class ArticleController extends AbstractController
     /**
      * @Route("/", name="app_homepage")
      */
-    public function homepage()
+    public function homepage(
+        //bool $debug
+    )
     {
         //dd($this->getParameter('app.support_email')); get parameter from .env and services.yaml
+        //dd($debug);
         return $this->render('articles/homepage.html.twig');
     }
 
@@ -24,8 +28,15 @@ class ArticleController extends AbstractController
      * @Route("/articles/{slug}" , name="app_article_show")
      */
     public function show($slug, //Parsedown $parsedown, AdapterInterface $cache, deleted when creted markdown service
-        MarkdownParser $markdownParser)
-    {
+        MarkdownParser $markdownParser,
+        SlackClient $slackClient
+    ) {
+        if ($slug == 'slack') 
+        {
+            $slackClient->send('Привет это важное уведомление');
+        }
+
+        
         $comments = [
             'First comment',
             'Second comment',

@@ -6,6 +6,7 @@
 parameters:
     app.support_email: '%env(SUPPORT_EMAIL)%'
     app.example_enabled: '%env(bool:EXAMPLE_ENABLED)%'
+    cache_adapter: cache.adapter.filesystem
 
 services:
     # default configuration for services in *this* file
@@ -13,6 +14,9 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
+        bind:
+            $debug: '%kernel.debug%'
+            Demontpx\ParsedownBundle\Parsedown: '@demontpx_parsedown.parsedown'
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
@@ -32,6 +36,6 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    App\Service\MarkdownParser:
-        arguments:
-            $logger: '@monolog.logger.markdown'
+    #App\Service\MarkdownParser:
+    #    arguments:
+    #        $logger: '@monolog.logger.markdown'

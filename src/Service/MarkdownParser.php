@@ -20,12 +20,21 @@ class MarkdownParser
      * @var LoggerInterface
      */
     private $logger;
+    /**
+     * @var bool
+     */
+    private $debug;
 
-    public function __construct(Parsedown $parsedown, AdapterInterface $cache, LoggerInterface $logger)
-    {
+    public function __construct(
+        Parsedown $parsedown, 
+        AdapterInterface $cache, 
+        LoggerInterface $markdownLogger, 
+        bool $debug
+    ) {
         $this->parsedown = $parsedown;
         $this->cache = $cache;
-        $this->logger = $logger;
+        $this->logger = $markdownLogger;
+        $this->debug = $debug;
     }
 
     public function parse(string $source): string
@@ -33,6 +42,11 @@ class MarkdownParser
         if(strpos($source, 'красн') !== false)
         {
             $this->logger->info('Кажется эта статья о красной точке');
+        }
+
+        if($this->debug)
+        {
+            return $this->parsedown->text($source);
         }
         
         $item = $this->cache->getItem('markdown_'.md5($source));
