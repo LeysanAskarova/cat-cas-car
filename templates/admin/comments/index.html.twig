@@ -1,0 +1,48 @@
+{% extends 'base_content.html.twig' %}
+
+{% block title%}Управление комментариями{% endblock %}
+
+{% block content %}
+<h1>Управление комментариями</h1>
+
+<form>
+    <div class="input-group mb-3">
+        <input type="text"
+            name="q"
+            class="form-control"
+            placeholder="Найти..."
+            value="{{ app.request.query.get('q') }}"
+        >  
+        <button type="submit" class="btn btn-outline-secondary">
+            <i class="fa fa-search"></i>
+        </button>  
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Статья</th>
+            <th>Автор</th>
+            <th>Комментарий</th>
+            <th>Дата</th>
+        </tr>    
+    </thead>
+    <tbody>
+        {% for comment in comments %}
+            <tr>
+                <td>
+                    <a href="#">{{ comment.articleTitle}}</a>
+                </td>
+                <td>{{ comment.authorName}}</td>
+                <td style="">{{ comment.comment| u.truncate(10,'...')}}</td>
+                <td>{{ comment.createdAt| ago }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">No comments</td>
+            </tr>    
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}       

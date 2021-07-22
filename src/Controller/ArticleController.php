@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 
-use App\Service\MarkdownParser;
+//use App\Service\MarkdownParser;
 use App\Service\SlackClient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,7 +28,7 @@ class ArticleController extends AbstractController
      * @Route("/articles/{slug}" , name="app_article_show")
      */
     public function show($slug, //Parsedown $parsedown, AdapterInterface $cache, deleted when creted markdown service
-        MarkdownParser $markdownParser,
+        //MarkdownParser $markdownParser,
         SlackClient $slackClient
     ) {
         if ($slug == 'slack') 
@@ -78,7 +78,7 @@ class ArticleController extends AbstractController
         }
 
         $articlecontent = $item->get();*/
-        $articlecontent = $markdownParser->parse($articlecontent);
+        //$articlecontent = $markdownParser->parse($articlecontent);
         
 
         /* second method 
