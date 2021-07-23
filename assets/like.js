@@ -9,9 +9,10 @@ $(function () {
       e.preventDefault();
       
       const type = $container.data('type');
+      const href = $container.data(type + 'Href');
       
       $.ajax({
-        url: '/articles/10/like/'+ type,
+        url: href,
         method: 'POST'
       }).then(function (data) {
         $container.find('.fa-heart').toggleClass('far fas');

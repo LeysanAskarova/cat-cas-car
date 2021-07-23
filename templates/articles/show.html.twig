@@ -1,6 +1,6 @@
 {% extends 'base_content.html.twig' %}
 
-{% block title %}Статья: {{ article }}{% endblock %}
+{% block title %}Статья: {{ article.title }}{% endblock %}
 
 {% block content_row_class %} {{ parent() }} no-gutters featured-border {% endblock %}
 {% block content_col_class %} article-detail {% endblock %}
@@ -8,24 +8,27 @@
 {% block content %}
     <div class="col-sm-12 p-2">
         <div class="media d-flex align-content-center">
-            <img class="article-detail-image align-self-start mr-3 rounded" src="{{ asset('images/car2.jpg') }}">
+            <img class="article-detail-image align-self-start mr-3 rounded" src="{{ asset(article.imagePath) }}">
             <div class="media-body d-inline-block align-self-center">
-                <h1 class="mb-2">{{ article }}</h1>
+                <h1 class="mb-2">{{ article.title }}</h1>
                 <div class="mb-2 d-flex">
                     <span class="badge badge-pill badge-secondary mr-2">Дрындулет</span>
                     <span class="badge badge-pill badge-secondary mr-2">Карета</span>
                 </div>
                 <div class="d-flex">
                     <div class="text-muted align-self-center">
-                        <img class="article-author-img rounded-circle mr-2" src="https://robohash.org/Николай.png?set=set4">
-                        Николай
+                        <img class="article-author-img rounded-circle mr-2" src="{{ article.authorAvatarPath}}">
+                        {{ article.author }}
                     </div>
-                    <div class="text-muted align-self-center ml-4">26 days ago</div>
+                    <div class="text-muted align-self-center ml-4">{{ article.publishedAt ? article.publishedAt|ago : 'неопубликована' }}</div>
                     <div 
                         class="text-muted align-self-center ml-4 article-detail-hearts" 
-                            data-item="likes" data-type="like"
+                            data-item="likes" 
+                            data-type="like"
+                            data-like-href="{{ path('app_article_like', {slug: article.slug, type: 'like' })}}"
+                            data-dislike-href="{{ path('app_article_like', {slug: article.slug, type: 'dislike' })}}"
                         ><span data-item="likesCount">
-                            120 
+                            {{ article.likeCount}} 
                         </span>
                         <i class="far fa-heart text-danger"></i>
                     </div>
@@ -36,7 +39,7 @@
 
 
     <div class="col-12 mt-2 mb-4">
-        {{ articleContent| cached_markdown }}
+        {{ article.body | cached_markdown }}
     </div>
 
 
