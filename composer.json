@@ -16,6 +16,7 @@
         "paragonie/sodium_compat": "^1.16",
         "php-http/guzzle6-adapter": "^2.0",
         "sensio/framework-extra-bundle": "^6.1",
+        "stof/doctrine-extensions-bundle": "^1.6",
         "symfony/asset": "4.4.*",
         "symfony/console": "4.4.*",
         "symfony/debug-bundle": "4.4.*",
@@ -80,6 +81,8 @@
         }
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "fzaninotto/faker": "^1.9",
         "symfony/maker-bundle": "^1.33"
     }
 }

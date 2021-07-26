@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\Article;
@@ -15,20 +16,20 @@ class ArticleController extends AbstractController
     public function homepage(ArticleRepository $repository)
     {
         $articles = $repository->findLatestPublished();
-        return $this->render('articles/homepage.html.twig', ['articles'=>$articles]);
+        return $this->render('articles/homepage.html.twig', ['articles' => $articles]);
     }
 
     /**
      * @Route("/articles/{slug}" , name="app_article_show")
      */
     public function show(Article $article,
-        SlackClient $slackClient
-    ) {     
-        if ($article->getSlug()== 'slack') 
-        {
+                         SlackClient $slackClient
+    )
+    {
+        if ($article->getSlug() == 'slack') {
             $slackClient->send('Привет это важное уведомление');
         }
-        
+
         $comments = [
             'First comment',
             'Second comment',
@@ -40,6 +41,6 @@ class ArticleController extends AbstractController
                 'article' => $article,
                 'comments' => $comments,
             ]// array will be used in template as parameter
-         );
+        );
     }
 }
