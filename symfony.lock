@@ -130,6 +130,12 @@
     "http-interop/http-factory-guzzle": {
         "version": "1.0.0"
     },
+    "knplabs/knp-components": {
+        "version": "v3.1.0"
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v5.6.0"
+    },
     "laminas/laminas-code": {
         "version": "4.4.2"
     },

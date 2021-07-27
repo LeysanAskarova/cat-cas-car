@@ -4,9 +4,10 @@ namespace App\DataFixtures;
 
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Article;
-use App\Entity\Comment;
+use App\Entity\Tag;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class ArticleFixtures extends BaseFixtures
+class ArticleFixtures extends BaseFixtures implements DependentFixtureInterface
 {
     private static $articleTitles = [
         'Title 1',
@@ -41,31 +42,26 @@ class ArticleFixtures extends BaseFixtures
                 ->setAuthor($this->faker->randomElement(self::$articleAuthors))
                 ->setImageFilename($this->faker->randomElement(self::$articleImages))
                 ->setLikeCount($this->faker->numberBetween(0,10));
-    
+
             if($this->faker->boolean(60)) {
                 $article->setPublishedAt($this->faker->dateTimeBetween('-100 days', '-1 days'));
             }
 
-            for($k=0; $k < $this->faker->numberBetween(1,10) ; $k++) {
-                $this->addComment($article, $manager);
+            $tags = [];
+            for($i = 0; $i < $this->faker->numberBetween(0,5); $i++) {
+                $tags[] = $this->getRandomReference(Tag::class);
+            }
+            
+            foreach($tags as $tag) {
+                $article->addTag($tag);
             }
         });
     }
 
-    /**
-     * @param Article $article
-     * @param ObjectManager $manager
-     */
-    public function addComment(Article $article, ObjectManager $manager) 
+    public function getDependencies ()
     {
-        $comment = (new Comment())
-            ->setAuthorName('kitty')
-            ->setContent($this->faker->paragraph)
-            ->setCreatedAt($this->faker->dateTimeBetween('-100 days', '-1 days'))
-            ->setArticle($article);
-        if($this->faker->boolean(50)) {
-           $comment->setDeletedAt($this->faker->dateTimeThisMonth);
-        }
-        $manager->persist($comment);
+        return [
+            TagFixtures::class,
+        ];
     }
 }

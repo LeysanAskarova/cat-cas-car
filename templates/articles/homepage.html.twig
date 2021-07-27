@@ -29,10 +29,9 @@
                                         <h5 class="mb-2">{{ article.title }}<span 
                                         class="article-comments p-1 bg-secondary text-white rounded"
                                         >{{article.getNonDeletedComments|length}} комментов</span></h5>
-                                        <div class="mb-2 d-flex">
-                                            <span class="p-1 bg-secondary text-white rounded mr-2">Дрындулет</span>
-                                            <span class="p-1 bg-secondary text-white rounded">Карета</span>
-                                        </div>
+
+                                        {% include 'partial/article_tags.html.twig' with { tags: article.tags } %}
+
                                         <div class="d-flex justify-content-between">
                                             <div class="text-muted align-self-center">
                                                 <img class="article-author-img rounded-circle" 

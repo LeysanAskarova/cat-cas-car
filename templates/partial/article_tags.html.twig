@@ -1,0 +1,7 @@
+{% if tags|length %}
+    <div class="mb-2 d-flex">
+        {% for tag in tags %}
+            <span class="d-inline-block bg-secondary text-white rounded m-1">{{ tag.name }}</span>
+        {% endfor %}
+    </div>
+{% endif %}

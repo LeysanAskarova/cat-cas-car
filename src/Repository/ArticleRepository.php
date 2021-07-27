@@ -27,6 +27,10 @@ class ArticleRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('a');
         return $this->latest($this->published($queryBuilder))
+                        ->leftJoin('a.comments', 'c')
+                        ->addSelect('c')
+                        ->leftJoin('a.tags', 't')
+                        ->addSelect('t')
                         ->getQuery()
                         ->getResult()
         ;
