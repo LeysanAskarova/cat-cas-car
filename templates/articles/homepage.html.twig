@@ -26,10 +26,12 @@
                                         <img class="article-img" src="{{asset ( article.imagePath )}}">
                                     </div>
                                     <a class="col p-2 px-4 d-flex flex-column article-item" href="{{ path ('app_article_show', { slug:article.slug })}}">
-                                        <h5 class="mb-2">{{ article.title }}<span class="badge badge-info article-comments">5 комментов</span></h5>
+                                        <h5 class="mb-2">{{ article.title }}<span 
+                                        class="article-comments p-1 bg-secondary text-white rounded"
+                                        >{{article.getNonDeletedComments|length}} комментов</span></h5>
                                         <div class="mb-2 d-flex">
-                                            <span class="badge badge-pill badge-secondary mr-2">Дрындулет</span>
-                                            <span class="badge badge-pill badge-secondary mr-2">Карета</span>
+                                            <span class="p-1 bg-secondary text-white rounded mr-2">Дрындулет</span>
+                                            <span class="p-1 bg-secondary text-white rounded">Карета</span>
                                         </div>
                                         <div class="d-flex justify-content-between">
                                             <div class="text-muted align-self-center">

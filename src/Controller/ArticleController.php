@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
+use App\Repository\CommentRepository;
 use App\Service\SlackClient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,16 +31,9 @@ class ArticleController extends AbstractController
             $slackClient->send('Привет это важное уведомление');
         }
 
-        $comments = [
-            'First comment',
-            'Second comment',
-            'Third comment',
-        ];
-
         return $this->render('articles/show.html.twig',//name of template
             [
-                'article' => $article,
-                'comments' => $comments,
+                'article' => $article
             ]// array will be used in template as parameter
         );
     }

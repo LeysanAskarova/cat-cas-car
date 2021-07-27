@@ -44,7 +44,7 @@
 
 
     <div class="col-sm-12 mb-4">
-        <h3><i class="pr-3 far fa-comment text-secondary"></i>{{ comments|length }} Комментария</h3>
+        <h3><i class="pr-3 far fa-comment text-secondary"></i>{{ article.getNonDeletedComments|length }} Комментария</h3>
         <hr>
 
         <div class="row mb-4">
@@ -58,16 +58,16 @@
             </div>
         </div>
 
-        {% for comment in comments %}
+        {% for comment in article.getNonDeletedComments %}
             <div class="row mt-2">
                 <div class="col-sm-12">
                     <div class="media">
                         <img class="align-self-start comment-img rounded-circle" src="{{ asset('images/cat-profile.png') }}">
                         <div class="d-inline-block media-body align-self-start col-sm-6">
-                            <b>Сметанка</b>
-                            <small>about 11 days ago</small>
+                            <b>{{ comment.authorName }}</b>
+                            <small>{{ comment.createdAt|ago }} {% if comment.deletedAT %}DELETED{% endif %}</small>
                             <br>
-                            <span class="comment">{{ comment }}</span>
+                            <span class="comment">{{ comment.content }}</span>
                         </div>
                     </div>
                 </div>

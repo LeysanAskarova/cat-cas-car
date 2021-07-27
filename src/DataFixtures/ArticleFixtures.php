@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Article;
+use App\Entity\Comment;
 
 class ArticleFixtures extends BaseFixtures
 {
@@ -29,7 +30,7 @@ class ArticleFixtures extends BaseFixtures
 
     public function loadData(ObjectManager $manager)
     {
-        $this->createMany(Article::class, 10, function(Article $article) {
+        $this->createMany(Article::class, 10, function(Article $article) use ($manager){
             $article
                 ->setTitle($this->faker->randomElement(self::$articleTitles))
                 ->setBody('Lorem ipsum **красная точка** dolor sit amet, consectetur adipiscing elit, sed
@@ -44,6 +45,27 @@ class ArticleFixtures extends BaseFixtures
             if($this->faker->boolean(60)) {
                 $article->setPublishedAt($this->faker->dateTimeBetween('-100 days', '-1 days'));
             }
+
+            for($k=0; $k < $this->faker->numberBetween(1,10) ; $k++) {
+                $this->addComment($article, $manager);
+            }
         });
+    }
+
+    /**
+     * @param Article $article
+     * @param ObjectManager $manager
+     */
+    public function addComment(Article $article, ObjectManager $manager) 
+    {
+        $comment = (new Comment())
+            ->setAuthorName('kitty')
+            ->setContent($this->faker->paragraph)
+            ->setCreatedAt($this->faker->dateTimeBetween('-100 days', '-1 days'))
+            ->setArticle($article);
+        if($this->faker->boolean(50)) {
+           $comment->setDeletedAt($this->faker->dateTimeThisMonth);
+        }
+        $manager->persist($comment);
     }
 }
