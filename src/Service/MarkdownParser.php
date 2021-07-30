@@ -5,6 +5,7 @@ namespace App\Service;
 use Demontpx\ParsedownBundle\Parsedown;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
+use Symfony\Component\Security\Core\Security;
 
 class MarkdownParser
 {
@@ -24,24 +25,33 @@ class MarkdownParser
      * @var bool
      */
     private $debug;
+    /**
+     * @var Security
+     */
+    private $security;
 
     public function __construct(
         Parsedown $parsedown, 
         AdapterInterface $cache, 
         LoggerInterface $markdownLogger, 
-        bool $debug
+        bool $debug,
+        Security $security
     ) {
         $this->parsedown = $parsedown;
         $this->cache = $cache;
         $this->logger = $markdownLogger;
         $this->debug = $debug;
+        $this->security = $security;
     }
 
     public function parse(string $source): string
     {
         if(strpos($source, 'красн') !== false)
         {
-            $this->logger->info('Кажется эта статья о красной точке');
+            $this->logger->info(
+                'Кажется эта статья о красной точке', 
+                ['user' => $this->security->getUser()]
+            );
         }
 
         if($this->debug)

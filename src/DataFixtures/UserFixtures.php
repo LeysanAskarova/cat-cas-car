@@ -21,6 +21,13 @@ class UserFixtures extends BaseFixtures
     {
         // $product = new Product();
         // $manager->persist($product);
+        $this->create(User::class, function(User $user){
+            $user
+                ->setEmail('admin@catcascar.ru')
+                ->setFirstname('admin')
+                ->setPassword($this->userPasswordEncoder->encodePassword($user, '123456'))
+                ->setRoles(['ROLE_ADMIN']);
+        });
         $this->createMany(User::class, 10, function(User $user) {
             $user
                 ->setEmail($this->faker->email)

@@ -9,7 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+/**
+ * @IsGranted("ROLE_ADMIN_COMMENT")
+ */
 class CommentsController extends AbstractController
 {
     /**
@@ -17,6 +21,7 @@ class CommentsController extends AbstractController
      */
     public function index(Request $request, CommentRepository $commentRepository, PaginatorInterface $paginator): Response
     {
+        //$this->denyAccessUnlessGranted('ROLE_ADMIN');
         $pagination = $paginator->paginate(
             $commentRepository->findAllWithSearchQuery(
                 $request->query->get('q'),

@@ -10,7 +10,7 @@ use App\Entity\User;
 class UsersController extends AbstractFOSRestController
 {
     /**
-     * @Rest\Get("/users", name="users")
+     * @Rest\Get("/api/users", name="users")
      */
     public function getAction()
     {
@@ -22,7 +22,7 @@ class UsersController extends AbstractFOSRestController
     }
 
     /**
-    * @Rest\Get("/users/{id}")
+    * @Rest\Get("/api/users/{id}")
     */
     public function idAction($id)
     {
