@@ -46,11 +46,6 @@ class Article
     private $publishedAt;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $author;
-
-    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $likeCount;
@@ -70,6 +65,12 @@ class Article
      * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="articles")
      */
     private $tags;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
 
     public function __construct()
     {
@@ -130,18 +131,6 @@ class Article
         return $this;
     }
 
-    public function getAuthor(): ?string
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(?string $author): self
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
     public function getLikeCount(): ?int
     {
         return $this->likeCount;
@@ -169,10 +158,6 @@ class Article
     public function getImagePath() 
     {
         return 'images/' . $this->getImageFilename();
-    }
-    public function getAuthorAvatarPath()
-    {
-        return sprintf('https://robohash.org/%s.png?set=set4', str_replace(' ', '_', $this->author));
     }
 
     public function like()
@@ -250,6 +235,18 @@ class Article
     public function removeTag(Tag $tag): self
     {
         $this->tags->removeElement($tag);
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

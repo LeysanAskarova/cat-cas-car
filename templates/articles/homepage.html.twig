@@ -35,8 +35,8 @@
                                         <div class="d-flex justify-content-between">
                                             <div class="text-muted align-self-center">
                                                 <img class="article-author-img rounded-circle" 
-                                                    src="{{ article.authorAvatarPath}}"> 
-                                                    {{ article.author }}
+                                                    src="{{ article.author.avatarUrl}}"> 
+                                                    {{ article.author.firstName }}
                                             </div>
                                             <div class="text-muted align-self-center">{{ article.publishedAt ? article.publishedAt|ago }}</div>
                                         </div>

@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Article;
 use App\Entity\Tag;
+use App\Entity\User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class ArticleFixtures extends BaseFixtures implements DependentFixtureInterface
@@ -14,13 +15,6 @@ class ArticleFixtures extends BaseFixtures implements DependentFixtureInterface
         'Title 2',
         'Title 3',
         'Title 4',
-    ];
-
-    private static $articleAuthors = [
-        'Author 1',
-        'Author 2',
-        'Author 3',
-        'Author 4',
     ];
 
     private static $articleImages = [
@@ -39,7 +33,7 @@ class ArticleFixtures extends BaseFixtures implements DependentFixtureInterface
 ' . $this->faker->paragraphs($this->faker->numberBetween(2, 5), true));
             
             $article
-                ->setAuthor($this->faker->randomElement(self::$articleAuthors))
+                ->setAuthor($this->getRandomReference(User::class))
                 ->setImageFilename($this->faker->randomElement(self::$articleImages))
                 ->setLikeCount($this->faker->numberBetween(0,10));
 
@@ -62,6 +56,7 @@ class ArticleFixtures extends BaseFixtures implements DependentFixtureInterface
     {
         return [
             TagFixtures::class,
+            UserFixtures::class,
         ];
     }
 }

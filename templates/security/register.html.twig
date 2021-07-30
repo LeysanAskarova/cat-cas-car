@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+
+            {% if error %}
+                <div class="col-12">
+                    <div class="alert alert-danger" role="alert">
+                        {{ error.messageKey|trans(error.messageData, 'security')}}
+                    </div>
+                </div>  
+            {% endif %}  
+
+
+            <div class="col-sm-12"> 
+
+                <form class="form-signin" method="post">
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate')}}">
+
+                    <h1 class="h3 mb-3 font-weight-normal">Регистрация</h1>
+                    <label for="inputEmail" class="sr-only">Email адрес</label>
+                    <input
+                        type="email"
+                        id="inputEmail"
+                        name="email"
+                        class="form-control"
+                        placeholder="Ваш email..."
+                        required
+                        autofocus
+                    >
+
+                    <label for"inputName" class="sr-only">Имя</label> 
+                    <input
+                        type="еуые"
+                        id="inputName"
+                        name="firstName"
+                        class="form-control"
+                        placeholder="Ваше имя..."
+                    >
+
+                    <label for"inputPassword" class="sr-only">Пароль</label> 
+                    <input
+                        type="password"
+                        id="inputPassword"
+                        name="password"
+                        class="form-control"
+                        placeholder="Ваш пароль..."
+                        required
+                    >
+
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" name="agree">Согласен с условиями
+                        </label>
+                    </div>
+
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+    </div>        
+{% endblock %}    
