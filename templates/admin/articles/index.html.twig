@@ -1,0 +1,33 @@
+{% extends 'base_content.html.twig' %}
+
+{% block title%}Управление статьями{% endblock %}
+
+{% block content %}
+<h1>Управление статьями ({{ pagination.totalItemCount }})</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Заголовок</th>
+            <th>Автор</th>
+            <th>Опубликована</th>
+        </tr>    
+    </thead>
+    <tbody>
+        {% for article in pagination %}
+            <tr>
+                <td>
+                    <a href="{{ path('app_article_show', {slug: article.slug}) }}">{{ article.title}}</a>
+                </td>
+                <td>{{ article.author.firstName}}</td>
+                <td><i class="fas fa-{{ article.isPublished ? 'check' : 'times'}}"></i></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">No articles</td>
+            </tr>    
+        {% endfor %}
+    </tbody>
+</table>
+{{ knp_pagination_render(pagination) }}
+{% endblock %}       

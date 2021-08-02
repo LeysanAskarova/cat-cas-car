@@ -64,4 +64,13 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         ;
     }
     */
+
+    public function findAllSortedByName()
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.firstname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

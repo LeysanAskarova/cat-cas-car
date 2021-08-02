@@ -251,4 +251,9 @@ class Article
         return $this;
     }
 
+    public function isPublished() 
+    {
+        return null !== $this->getPublishedAt();
+    }
+
 }

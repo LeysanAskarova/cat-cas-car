@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title%}Создание статьи{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-danger" role="alert">
+                    Не удалось создать статью
+                </div>
+            </div>  
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="p-4 border rounded-lg mb-4 shadow-sm bg-white">
+                    <h1>Создание статьи</h1>
+                    
+                    {{ form_start(articleForm) }}
+                        {{ form_widget(articleForm) }}
+                         <button type="submit" class="btn btn-primary">Создать</button>
+                    {{ form_end(articleForm) }}                  
+                </div>
+            </div>  
+        </div>
+    </div>    
+{% endblock %}       
