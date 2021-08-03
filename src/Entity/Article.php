@@ -9,9 +9,12 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\Criteria;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
+ * @Assert\EnableAutoMapping()
  */
 class Article
 {
@@ -26,14 +29,32 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="у статьи должен быть заголовок")
      */
     private $title;
 
     /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(type="string", length=100, unique=true)
+     * @Assert\DisableAutoMapping()
      */
     private $slug;
+
+    /**
+     * @var \DateTime
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     * @Assert\DisableAutoMapping()
+     */
+    protected $createdAt;
+
+    /**
+     * @var \DateTime
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     * @Assert\DisableAutoMapping()
+     */
+    protected $updatedAt;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -88,7 +109,7 @@ class Article
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
@@ -256,4 +277,16 @@ class Article
         return null !== $this->getPublishedAt();
     }
 
+    
+    /**
+     * @Assert\Callback()
+     */
+    public function validate(ExecutionContextInterface $context, $payload)
+    {
+        if (mb_stripos($this->getTitle(), 'собак') !== false) {
+            $context->buildViolation('про собак писать запрещено')
+                ->atPath('title')
+                ->addViolation();
+        }
+    }
 }

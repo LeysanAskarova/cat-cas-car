@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\UserRegistrationFormType;
 use App\Security\LoginFormAuthenticator;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,14 +48,21 @@ class SecurityController extends AbstractController
         Request $request,
         UserPasswordEncoderInterface $userPasswordEncoder,
         GuardAuthenticatorHandler $guardAuthenticatorHandler,
-        LoginFormAuthenticator $loginFormAuthenticator
+        LoginFormAuthenticator $loginFormAuthenticator, 
+        EntityManagerInterface $em
     ) {
-        if ($request->isMethod('POST')) {
-            $user = new User();
-            $user->setFirstname($request->request->get('firstName'))
-                ->setEmail($request->request->get('email'))
-                ->setPassword($userPasswordEncoder->encodePassword($user, $request->request->get('password')));
-            $em = $this->getDoctrine()->getManager();
+        $form = $this->createForm(UserRegistrationFormType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            /** @var User $user */
+            $user = $form->getData();
+
+            $user->setPassword($userPasswordEncoder->encodePassword(
+                $user, 
+                $form->get('plainPassword')->getData()
+            ));
+
             $em->persist($user);
             $em->flush();    
             
@@ -63,7 +72,11 @@ class SecurityController extends AbstractController
                 $loginFormAuthenticator,
                 'main'
             );
+            
         }
-        return $this->render('security/register.html.twig', ['error' => '']);
+        
+        return $this->render('security/register.html.twig', [
+            'registrationForm' => $form->createView()
+        ]);
     }
 }

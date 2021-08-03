@@ -28,6 +28,7 @@ class ArticleFormType extends AbstractType
             ->add('title', TextType::class, [
                 'label'=>'Укажите название статьи',
                 'help'=>'Не используйте специальные символы',
+                'required'=>false
             ])
             ->add('body', TextType::class, [
                 'label'=>'Укажите описание статьи'
@@ -42,6 +43,7 @@ class ArticleFormType extends AbstractType
                 },
                 'placeholder'=>'Выберите автора статьи',
                 'choices'=>$this->userRepository->findAllSortedByName(),
+                'invalid_message'=>'такого автора не существует'
             ])
         ;
         $builder->get('body')
