@@ -60,7 +60,9 @@ class ArticlesController extends AbstractController
         //    throw $this->createAccessDeniedException('Доступ запрещен');
         //}
         //$this->denyAccessUnlessGranted('MANAGE', $article);// move to annotation
-        $form = $this->createForm(ArticleFormType::class, $article);
+        $form = $this->createForm(ArticleFormType::class, $article, [
+            'enabled_published_at'=>true
+        ]);
         if($article = $this->handleFormRequest($form, $em, $request)) {
             $this->addFlash('flash_message', 'Статья успешно изменена');
             return $this->redirectToRoute('app_admin_articles_edit', ['id'=>$article->getId()]);

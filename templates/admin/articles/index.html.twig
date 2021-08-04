@@ -11,6 +11,7 @@
             <th>Заголовок</th>
             <th>Автор</th>
             <th>Опубликована</th>
+            <th></th>
         </tr>    
     </thead>
     <tbody>
@@ -21,6 +22,7 @@
                 </td>
                 <td>{{ article.author.firstName}}</td>
                 <td><i class="fas fa-{{ article.isPublished ? 'check' : 'times'}}"></i></td>
+                <td><a href="{{ path('app_admin_articles_edit', {id: article.id}) }}"><i class="fas fa-pen"></i></a></td>
             </tr>
         {% else %}
             <tr>
