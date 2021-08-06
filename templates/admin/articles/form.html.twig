@@ -1,4 +1,14 @@
 {{ form_start(articleForm) }}
+
+    {% if articleForm.vars.data.imageFilename %}
+        <img src="{{ uploaded_asset ( 'article_uploads', articleForm.vars.data.imageFilename) | imagine_filter('articles_preview') }}"
+        height="100" alt=""
+        >
+    {% endif %}
+
+    {{ form_row(articleForm.image , { 
+        label: 'Изображение'
+    }) }}
     {{ form_row(articleForm.title , { label: 'Заголовок статьи'}) }}
     {{ form_row(articleForm.body , { label: 'Текст статьи'}) }}
     {% if articleForm.publishedAt is defined %}

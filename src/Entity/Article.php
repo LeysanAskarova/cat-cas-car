@@ -7,7 +7,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use App\Repository\ArticleRepository;
-use Doctrine\Common\Collections\Criteria;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
@@ -174,11 +173,6 @@ class Article
         $this->imageFilename = $imageFilename;
 
         return $this;
-    }
-
-    public function getImagePath() 
-    {
-        return 'images/' . $this->getImageFilename();
     }
 
     public function like()

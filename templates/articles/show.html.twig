@@ -8,7 +8,7 @@
 {% block content %}
     <div class="col-sm-12 p-2">
         <div class="media d-flex align-content-center">
-            <img class="article-detail-image align-self-start mr-3 rounded" src="{{ asset(article.imagePath) }}">
+            <img class="article-detail-image align-self-start mr-3 rounded" src="{{ uploaded_asset ( 'article_uploads', article.imageFilename) }}">
             <div class="media-body d-inline-block align-self-center">
                 <h1 class="mb-2">{{ article.title }}</h1>
 

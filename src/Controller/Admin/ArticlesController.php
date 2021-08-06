@@ -5,13 +5,15 @@ namespace App\Controller\Admin;
 use App\Entity\Article;
 use App\Form\ArticleFormType;
 use App\Repository\ArticleRepository;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 
 /*
@@ -37,10 +39,10 @@ class ArticlesController extends AbstractController
      * @Route("/admin/articles/create", name="app_admin_articles_create")
      * @IsGranted("ROLE_ADMIN_ARTICLE")
      */
-    public function create(EntityManagerInterface $em, Request $request)
+    public function create(EntityManagerInterface $em, Request $request, FileUploader $articleFileUploader)
     {
-        $form = $this->createForm(ArticleFormType::class);
-        if($article = $this->handleFormRequest($form, $em, $request)) {
+        $form = $this->createForm(ArticleFormType::class, new Article());
+        if($article = $this->handleFormRequest($form, $em, $request, $articleFileUploader)) {
             $this->addFlash('flash_message', 'Статья успешно создана');
             return $this->redirectToRoute('app_admin_articles');
         }
@@ -54,8 +56,12 @@ class ArticlesController extends AbstractController
      * @Route("/admin/articles/{id}/edit", name="app_admin_articles_edit")
      * @IsGranted("MANAGE", subject="article")
      */
-    public function edit(Article $article, EntityManagerInterface $em, Request $request)
-    {
+    public function edit(
+        Article $article, 
+        EntityManagerInterface $em, 
+        Request $request,
+        FileUploader $articleFileUploader
+    ) {
         //if ($this->getUser() != $article->getAuthor() && !$this->isGranted("ROLE_ADMIN_ARTICLE")) {
         //    throw $this->createAccessDeniedException('Доступ запрещен');
         //}
@@ -63,7 +69,7 @@ class ArticlesController extends AbstractController
         $form = $this->createForm(ArticleFormType::class, $article, [
             'enabled_published_at'=>true
         ]);
-        if($article = $this->handleFormRequest($form, $em, $request)) {
+        if($article = $this->handleFormRequest($form, $em, $request, $articleFileUploader)) {
             $this->addFlash('flash_message', 'Статья успешно изменена');
             return $this->redirectToRoute('app_admin_articles_edit', ['id'=>$article->getId()]);
         }
@@ -74,12 +80,24 @@ class ArticlesController extends AbstractController
         ]);
     }
 
-    private function handleFormRequest(FormInterface $form, EntityManagerInterface $em, Request $request)
-    {
+    private function handleFormRequest(
+        FormInterface $form, 
+        EntityManagerInterface $em, 
+        Request $request,
+        FileUploader $articleFileUploader
+    ) {
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             /** @var Article $article */
             $article = $form->getData();
+
+            /** @var UploadedFile|null $image */
+            $image = $form->get('image')->getData();
+
+            if($image) {
+                $article->setImageFilename($articleFileUploader->uploadFile($image));
+            }
+
             $em->persist($article);
             $em->flush();    
 
