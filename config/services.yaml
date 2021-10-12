@@ -59,3 +59,7 @@ services:
         arguments:
             $uploadsPath: '/path/to/upload/avatar/'
 
+    App\EventListener\ExampleEventListener:
+        tags:
+            - {name: kernel.event_listener, event: kernel.request, method: 'onEventHappen'}
+
