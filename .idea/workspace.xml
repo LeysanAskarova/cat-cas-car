@@ -9,29 +9,28 @@
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/ArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/ArticlesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/ArticleFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/ArticleFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Article.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Article.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ArticleFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ArticleFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Twig/AppExtension.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Twig/AppExtension.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Api/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Api/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/articles/form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/articles/form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/articles/homepage.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/articles/homepage.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/articles/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/articles/show.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="DONT_SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -177,6 +176,11 @@
       <path value="$PROJECT_DIR$/vendor/oneup/flysystem-bundle" />
       <path value="$PROJECT_DIR$/vendor/oneup/uploader-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/templating" />
+      <path value="$PROJECT_DIR$/vendor/symfony/expression-language" />
+      <path value="$PROJECT_DIR$/vendor/symfony/web-link" />
+      <path value="$PROJECT_DIR$/vendor/psr/link" />
+      <path value="$PROJECT_DIR$/vendor/fig/link-util" />
+      <path value="$PROJECT_DIR$/vendor/api-platform/core" />
     </include_path>
   </component>
   <component name="ProjectId" id="1wIotFXDgL52wryTVCbEKQNusyi" />
@@ -192,6 +196,32 @@
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="Symfony2.SettingsForm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="Docker.docker-compose.yaml: Compose Deployment">
+    <configuration name="docker-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="watch" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="watch" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
+        <item itemvalue="npm.watch" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -209,14 +239,65 @@
       <workItem from="1628162313220" duration="110000" />
       <workItem from="1628162438757" duration="493000" />
       <workItem from="1628163093012" duration="68000" />
-      <workItem from="1628163175383" duration="9035000" />
+      <workItem from="1628163175383" duration="9353000" />
+      <workItem from="1632835318414" duration="989000" />
+      <workItem from="1632896738696" duration="454000" />
+      <workItem from="1632899792216" duration="1069000" />
+      <workItem from="1632901888110" duration="912000" />
+      <workItem from="1632914876489" duration="368000" />
+      <workItem from="1632922113962" duration="655000" />
+      <workItem from="1632923948847" duration="234000" />
+      <workItem from="1632930529247" duration="139000" />
+      <workItem from="1632938143989" duration="164000" />
+      <workItem from="1633007312010" duration="389000" />
+      <workItem from="1633009690075" duration="332000" />
+      <workItem from="1633013522070" duration="440000" />
+      <workItem from="1633097428697" duration="1274000" />
+      <workItem from="1633341373852" duration="395000" />
+      <workItem from="1633341966628" duration="946000" />
+      <workItem from="1633354620336" duration="75000" />
+      <workItem from="1633354746938" duration="603000" />
+      <workItem from="1633355374856" duration="465000" />
+      <workItem from="1633359902721" duration="968000" />
+      <workItem from="1633378047290" duration="173000" />
+      <workItem from="1633378240528" duration="140000" />
+      <workItem from="1633443701996" duration="379000" />
+      <workItem from="1633504520849" duration="197000" />
+      <workItem from="1633600581266" duration="244000" />
+      <workItem from="1633604172988" duration="411000" />
+      <workItem from="1633606236278" duration="354000" />
+      <workItem from="1633614049029" duration="139000" />
+      <workItem from="1633625168316" duration="214000" />
+      <workItem from="1633680478220" duration="207000" />
+      <workItem from="1633682620021" duration="208000" />
+      <workItem from="1633685390338" duration="549000" />
+      <workItem from="1633687325380" duration="455000" />
+      <workItem from="1633980978169" duration="765000" />
+      <workItem from="1634026926326" duration="345000" />
     </task>
+    <task id="LOCAL-00001" summary="working with files">
+      <created>1628256373659</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1628256373659</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
